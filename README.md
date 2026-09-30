@@ -2,6 +2,8 @@
 
 A production-ready Flask web application that predicts student placement eligibility and expected salary packages (in LPA) based on academic metrics, projects, internships, hackathon participation, and technical/communication skills.
 
+🌐 **Live Demo**: [https://your-placement-predictor-t.vercel.app](https://your-placement-predictor-t.vercel.app/)
+
 ---
 
 ## Features
