@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.venv/
+
+# Environment files (contains secrets)
+.env
+.env.local
+.env.*.local
+
+# Model files (large, consider Git LFS instead)
+# *.pkl
+*.joblib
+*.h5
+*.onnx
+
+# Data files (large, contain PII potentially)
+*.csv
+*.xlsx
+*.parquet
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+
+# Vercel
+.vercel
