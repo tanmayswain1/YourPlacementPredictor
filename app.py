@@ -75,10 +75,6 @@ def validate_required_radio(form, field_name, display_name):
 def home():
     return render_template('home.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     if request.method == 'GET':
