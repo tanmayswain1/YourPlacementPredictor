@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Placement Prediction System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="form-header">
+        <a href="/" class="btn btn-back">← Home</a>
+      </div>
+
+      <h2>About This System</h2>
+
+      <p>The Placement Prediction System evaluates candidate placement probability and predicts expected salary based on academic and experience profiles.</p>
+
+      <h3>How It Works</h3>
+      <p>The system uses two trained machine learning models:</p>
+      <ul class="tips-list">
+        <li><strong>Placement Model:</strong> Predicts whether a candidate will be placed based on academic scores, projects, internships, certifications, and skills.</li>
+        <li><strong>Salary Model:</strong> Predicts expected annual compensation (in LPA) for placed candidates, using the same features plus placement status.</li>
+      </ul>
+
+      <h3>Input Features</h3>
+      <ul class="tips-list">
+        <li>CGPA (0-10 scale)</li>
+        <li>10th and 12th percentage scores</li>
+        <li>Active backlog count</li>
+        <li>Major and minor project counts</li>
+        <li>Internship experience (yes/no)</li>
+        <li>Hackathon participation (yes/no)</li>
+        <li>Technical certifications count</li>
+        <li>Technical skills count</li>
+        <li>Communication skill rating (0-10)</li>
+      </ul>
+
+      <h3>Technical Details</h3>
+      <p>Built with Flask, scikit-learn, and pandas. Models are trained on historical placement data and serialized as pickle files for inference.</p>
+
+      <div class="nav-links">
+        <a href="/predict" class="btn btn-primary">Start Candidate Evaluation →</a>
+        <a href="/" class="btn btn-secondary">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

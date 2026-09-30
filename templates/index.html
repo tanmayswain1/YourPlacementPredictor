@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidate Evaluation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="form-header">
+        <a href="/" class="btn btn-back">← Back to Home</a>
+      </div>
+
+      <h2>Candidate Evaluation Form</h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form action="/predict" method="POST" id="mainForm">
+
+        <!-- Section 1: Academic -->
+        <div class="form-section">
+          <h3>Academic Record</h3>
+
+          <div class="field">
+            <label for="name">
+              <span>Candidate Name</span>
+            </label>
+            <input type="text" id="name" name="name" placeholder="Enter candidate name" required autocomplete="off"/>
+          </div>
+
+          <div class="field">
+            <label for="cgpa">
+              <span>CGPA</span>
+              <span class="hint">0.00 – 10.00</span>
+            </label>
+            <input type="number" id="cgpa" name="cgpa" min="0" max="10" step="0.01" placeholder="e.g. 8.45" required/>
+          </div>
+
+          <div class="field">
+            <label for="twelfth_pct">
+              <span>12th Percentage</span>
+              <span class="hint">0.00 – 100%</span>
+            </label>
+            <input type="number" id="twelfth_pct" name="twelfth_pct" min="0" max="100" step="0.01" placeholder="e.g. 88.5" required/>
+          </div>
+
+          <div class="field">
+            <label for="tenth_pct">
+              <span>10th Percentage</span>
+              <span class="hint">0.00 – 100%</span>
+            </label>
+            <input type="number" id="tenth_pct" name="tenth_pct" min="0" max="100" step="0.01" placeholder="e.g. 91.0" required/>
+          </div>
+
+          <div class="field">
+            <label for="backlogs">
+              <span>Active Backlogs</span>
+              <span class="hint">Integer</span>
+            </label>
+            <input type="number" id="backlogs" name="backlogs" min="0" placeholder="0" required/>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Section 2: Experience -->
+        <div class="form-section">
+          <h3>Experience & Projects</h3>
+
+          <div class="field">
+            <label>Industrial Internship</label>
+            <div class="toggle-group">
+              <label>
+                <input type="radio" name="internship" value="1" required/> Yes
+              </label>
+              <label>
+                <input type="radio" name="internship" value="0"/> No
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Hackathon Participation</label>
+            <div class="toggle-group">
+              <label>
+                <input type="radio" name="hackathon" value="1" required/> Yes
+              </label>
+              <label>
+                <input type="radio" name="hackathon" value="0"/> No
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="major_projects">
+              <span>Major Projects</span>
+              <span class="hint">Full lifecycle apps</span>
+            </label>
+            <input type="number" id="major_projects" name="major_projects" min="0" placeholder="e.g. 2" required/>
+          </div>
+
+          <div class="field">
+            <label for="mini_projects">
+              <span>Minor Projects</span>
+              <span class="hint">Prototypes / scripts</span>
+            </label>
+            <input type="number" id="mini_projects" name="mini_projects" min="0" placeholder="e.g. 3" required/>
+          </div>
+
+          <div class="field">
+            <label for="certifications">
+              <span>Certifications</span>
+              <span class="hint">Technical workshops</span>
+            </label>
+            <input type="number" id="certifications" name="certifications" min="0" placeholder="e.g. 2" required/>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Section 3: Skills -->
+        <div class="form-section">
+          <h3>Technical Skills</h3>
+
+          <div class="field">
+            <label for="skills">
+              <span>Technical Skills Count</span>
+              <span class="hint">Verified languages / tools</span>
+            </label>
+            <input type="number" id="skills" name="skills" min="0" placeholder="e.g. 8" required/>
+          </div>
+
+          <div class="field">
+            <label for="communication">
+              <span>Communication Skill</span>
+              <span class="slider-value" id="comm_val">5.0</span>
+            </label>
+            <div class="slider-container">
+              <input type="range" id="communication" name="communication"
+                     min="0" max="10" step="0.1" value="5.0"
+                     oninput="document.getElementById('comm_val').textContent = parseFloat(this.value).toFixed(1)"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions single-action" style="margin-top: 32px;">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Generate Placement Report →</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>

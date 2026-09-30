@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evaluation Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="form-header">
+        <a href="/" class="btn btn-back">← Back to Home</a>
+      </div>
+
+      {% if placed %}
+      <span class="result-status placed">Placed - High Probability</span>
+
+      <h2>Assessment: Qualified</h2>
+      <p>Candidate <strong>{{ name }}</strong> matches the profile of historically placed candidates across technical and academic indicators.</p>
+
+      <div class="metric-box">
+        <div class="metric-label">Projected Annual Compensation</div>
+        <div class="metric-value">{{ salary_lpa }} LPA</div>
+        <div class="metric-sub">≈ INR {{ "{:,.0f}".format(salary_lpa * 100000) }} per annum</div>
+
+        <div class="salary-range-wrapper">
+          <div class="range-labels">
+            <span>Min: <strong>{{ salary_min }} LPA</strong></span>
+            <span class="range-label-target">Most Probable: <strong>{{ salary_lpa }} LPA</strong></span>
+            <span>Max: <strong>{{ salary_max }} LPA</strong></span>
+          </div>
+
+          <div class="range-track">
+            <div class="range-gradient-bar"></div>
+            <div class="range-target-pin" title="Most Probable: {{ salary_lpa }} LPA">
+              <span class="pin-badge">{{ salary_lpa }} LPA</span>
+              <span class="pin-marker"></span>
+            </div>
+          </div>
+
+          <div class="range-subtext">Estimated offer band: <strong>₹{{ "{:,.0f}".format(salary_min * 100000) }}</strong> – <strong>₹{{ "{:,.0f}".format(salary_max * 100000) }}</strong> per annum</div>
+        </div>
+      </div>
+      {% else %}
+      <span class="result-status not-placed">Not Placed - Low Probability</span>
+
+      <h2>Assessment: Low Probability</h2>
+      <p>Candidate <strong>{{ name }}</strong> exhibits profile vectors currently below placement classification thresholds in historical benchmarks.</p>
+
+      <h3>Recommended Improvements</h3>
+      <ul class="tips-list">
+        <li>Complete verified industrial internships or enterprise-grade production projects.</li>
+        <li>Acquire 2-3 accredited technical certifications in core specialization stacks.</li>
+        <li>Target communication proficiency index ≥ 7.0 for interview rounds.</li>
+        <li>Participate actively in competitive hackathons and public technical repositories.</li>
+        <li>Elevate cumulative CGPA towards 8.0+ and resolve active backlog items.</li>
+      </ul>
+      {% endif %}
+
+      <div class="nav-links">
+        <a href="/predict" class="btn btn-primary">Evaluate Another Candidate →</a>
+        <a href="/about" class="btn btn-secondary">About Model</a>
+        <a href="/" class="btn btn-secondary">Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
